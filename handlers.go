@@ -12,6 +12,7 @@ import (
 )
 
 
+
 func str(str string) *string {
 	return &str
 }
@@ -54,6 +55,7 @@ func move(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(val, &requestData)
 	responseData := MoveResponse{
 		Move:  requestData.GenerateMove(),
+		Taunt: str(taunts[rand.Intn(len(taunts))]),
 	}
 
 }
