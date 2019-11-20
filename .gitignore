@@ -4,3 +4,6 @@ pkg/
 scripts/.env
 src/cover.out
 src/coverage.html
+
+/scripts
+/test
