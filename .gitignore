@@ -1,0 +1,6 @@
+bin/
+pkg/
+.idea/
+scripts/.env
+src/cover.out
+src/coverage.html
