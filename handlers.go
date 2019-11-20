@@ -6,11 +6,13 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-
+	"math/rand"
 	"net/http"
 
 )
 
+var heads = []string{"beluga", "bendr", "dead", "evil", "fang", "pixel", "regular", "safe", "sand-worm", "shades", "silly", "smile", "tongue"}
+var tails = []string{"block-bum", "bolt", "curled", "fat-rattle", "freckled", "hook", "pixel", "regular", "round-bum", "sharp", "skinny", "small-rattle"}
 
 
 func str(str string) *string {
@@ -40,6 +42,15 @@ func start(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	responseData := GameStartResponse{
+		Name:     "malen_kihren",
+	}
+	b, err := json.Marshal(responseData)
+	if err != nil {
+		log.Println("%v", err)
+		return
+	}
+	w.Write(b)
 }
 
 func pp(val []byte) {
@@ -55,8 +66,19 @@ func move(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(val, &requestData)
 	responseData := MoveResponse{
 		Move:  requestData.GenerateMove(),
+		Taunt: str(taunts[rand.Intn(len(taunts))]),
 	}
-
+	log.Printf("Move request - direction:%v - taunt: %v\n", responseData.Move, *responseData.Taunt)
+	if err != nil {
+		fmt.Printf("ERR: %#v\n", err)
+	}
+	log.Printf("%v\n", string(val))
+	b, err := json.Marshal(responseData)
+	if err != nil {
+		log.Fatalf("%v", err)
+		return
+	}
+	w.Write(b)
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
