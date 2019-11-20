@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-	"math/rand"
+
 	"net/http"
 
 )
@@ -25,7 +25,21 @@ func end(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Game end - %v\n", string(body))
 }
 
+func start(w http.ResponseWriter, r *http.Request) {
+	var requestData GameStartRequest
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	log.Printf("Game starting - %v\n", string(body))
+	err = json.Unmarshal(body, &requestData)
+	if err != nil {
+		log.Println(err)
+		return
+	}
 
+}
 
 func pp(val []byte) {
 
@@ -41,6 +55,7 @@ func move(w http.ResponseWriter, r *http.Request) {
 	responseData := MoveResponse{
 		Move:  requestData.GenerateMove(),
 	}
+
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
