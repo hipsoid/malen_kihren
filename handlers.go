@@ -49,8 +49,6 @@ func start(w http.ResponseWriter, r *http.Request) {
 
 	responseData := GameStartResponse{
 		Name:     "malen_kihren",
-		HeadType: str(heads[rand.Intn(len(heads))]),
-		TailType: str(tails[rand.Intn(len(tails))]),
 		Taunt:    str(taunts[rand.Intn(len(taunts))]),
 	}
 	b, err := json.Marshal(responseData)
