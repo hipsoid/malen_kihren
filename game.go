@@ -21,7 +21,7 @@ func (m SnakeRequest) GenerateMove() string {
 		return dir
 	}
 
-	//foodVectors := m.GetFoodVectors()
+
 	if snake.Health < 35 {
 		dir := m.FindMoveToNearestFood()
 		if dir != NOOP {
@@ -29,7 +29,7 @@ func (m SnakeRequest) GenerateMove() string {
 		}
 	}
 
-	// try and head towards the smallest snake
+
 	smallestSnake := Snake{}
 	for _, snake := range m.Board.Snakes {
 		if len(smallestSnake.Body) == 0 {
@@ -47,21 +47,21 @@ func (m SnakeRequest) GenerateMove() string {
 		}
 	}
 
-	// fill space
+
 	for _, i := range rand.Perm(4) {
 		dir := directions[i]
 		if m.IsValidMove(dir, true) {
 			return dir
 		}
 	}
-	// once more without space check, maybe we can prolong death
+
 	for _, i := range rand.Perm(4) {
 		dir := directions[i]
 		if m.IsValidMove(dir, false) {
 			return dir
 		}
 	}
-	// gonna die, just go up
+
 	return UP
 }
 
@@ -95,7 +95,7 @@ func (m SnakeRequest) CheckForPossibleKills() string {
 func (m SnakeRequest) GetFoodVectors() Vectors {
 	head := m.You.Head()
 	vectors := Vectors{}
-	// Move to closest food
+
 	for _, food := range m.GetFood() {
 		vectors = append(vectors, head.DistanceTo(food))
 	}

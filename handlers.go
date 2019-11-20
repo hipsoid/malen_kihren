@@ -12,12 +12,7 @@ import (
 )
 
 var taunts = []string{
-	"A token of gratitude is nonsensical, much like me.",
-	"Lucky number slevin has its world rocked by trees (or rocks).",
-	"The body of mind slips on a banana peel.",
-	"Sixty-four jumps both ways.",
-	"Camouflage paint is not yet ready to die.",
-	"Organizational culture brings both pleasure and pain.",
+	"Hello hackaton.",
 }
 
 func str(str string) *string {
