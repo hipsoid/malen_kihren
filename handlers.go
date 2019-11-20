@@ -40,10 +40,7 @@ func move(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(val, &requestData)
 	responseData := MoveResponse{
 		Move:  requestData.GenerateMove(),
-		Taunt: str(taunts[rand.Intn(len(taunts))]),
 	}
-
-	w.Write(b)
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
