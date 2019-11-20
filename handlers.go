@@ -9,11 +9,8 @@ import (
 	"math/rand"
 	"net/http"
 
-	"github.com/lucasb-eyer/go-colorful"
 )
 
-var heads = []string{"beluga", "bendr", "dead", "evil", "fang", "pixel", "regular", "safe", "sand-worm", "shades", "silly", "smile", "tongue"}
-var tails = []string{"block-bum", "bolt", "curled", "fat-rattle", "freckled", "hook", "pixel", "regular", "round-bum", "sharp", "skinny", "small-rattle"}
 var taunts = []string{
 	"A token of gratitude is nonsensical, much like me.",
 	"Lucky number slevin has its world rocked by trees (or rocks).",
@@ -51,9 +48,7 @@ func start(w http.ResponseWriter, r *http.Request) {
 	}
 
 	responseData := GameStartResponse{
-		Color:    "black",
 		Name:     "malen_kihren",
-		HeadUrl:  str("https://picsum.photos/50/50"),
 		HeadType: str(heads[rand.Intn(len(heads))]),
 		TailType: str(tails[rand.Intn(len(tails))]),
 		Taunt:    str(taunts[rand.Intn(len(taunts))]),
@@ -64,15 +59,6 @@ func start(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Write(b)
-}
-
-func getColor() string {
-	funcs := []func() colorful.Color{
-		colorful.FastWarmColor,
-		colorful.FastHappyColor,
-	}
-
-	return funcs[rand.Intn(len(funcs))]().Hex()
 }
 
 func pp(val []byte) {
