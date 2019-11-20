@@ -1,5 +1,5 @@
 package main
-
+ 
 type Stack []Point
 
 func (s Stack) Push(v Point) Stack {

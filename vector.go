@@ -1,5 +1,5 @@
 package main
-
+ 
 import "math"
 
 type Vectors []Vector
