@@ -52,8 +52,8 @@ func start(w http.ResponseWriter, r *http.Request) {
 	}
 
 	responseData := GameStartResponse{
-		Color:    getColor(),
-		Name:     fake.Word(),
+		Color:    str("white"),
+		Name:     str("malen_kihren"),
 		HeadUrl:  str("https://picsum.photos/50/50"),
 		HeadType: str(heads[rand.Intn(len(heads))]),
 		TailType: str(tails[rand.Intn(len(tails))]),
