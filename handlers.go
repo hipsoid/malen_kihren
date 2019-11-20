@@ -9,7 +9,6 @@ import (
 	"math/rand"
 	"net/http"
 
-	"github.com/icrowley/fake"
 	"github.com/lucasb-eyer/go-colorful"
 )
 
